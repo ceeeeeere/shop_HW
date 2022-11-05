@@ -20,13 +20,13 @@ print("""
 
 #查詢
 form = cgi.FieldStorage()
-id=form.getvalue('i')
+id=form.getvalue('delID')
 
 if osh.delProd(id) and id != None :
     print(f"{id}號商品已刪除!")
 else:
     print("查無此商品!")
     
-print("<br><a href='index_host.py'>回商店街</a>")
+print("<br><a href='index_host.py'>回到主頁</a>")
 print("</body></html>")
 

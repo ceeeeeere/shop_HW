@@ -8,11 +8,11 @@ print("Content-type: text/html; charset: utf-8\n")
 sys.stdout.flush()
 
 headline = "<h1>這是商場的管理端</h1>新增商品：<a href='addProducForm.html'> 我要販售 </a>"
-headline += "<hr><form method='post' action='delProduc.py'>輸入要刪除的號碼: <input type='text' name='i'><input type='submit'></form> <br>"
-headline += "<form method='post' action='likeProduc.py'>輸入要按讚的號碼: <input type='text' name='i'><input type='submit'></form>"
+headline += "<hr><form method='post' action='delProduc.py'>輸入要刪除的號碼 : <input type='text' name='delID' required='required'>&nbsp<input type='submit' value='執行'></form> <br>"
+headline += "<form method='post' action='chgProdForm.py'>輸入要變更詳細資料的號碼 : <input type='text' name='updID' required='required'>&nbsp<input type='submit' value='執行'></form>"
+headline += "<form method='post' action='inProduc.py'>輸入要入庫的號碼 : <input type='text' name='inID' required='required'>入庫數量 : <input type='text' name='inNum' required='required'>&nbsp<input type='submit' value='執行'></form>"
 headline += "<hr>"
-
-dialog = ""
+dialog =""
 msgList=osh.getShopList()
 
 target="<table><tr><th>商品編號</th><td>商品名稱</td><td>商品介紹</td><td>賣家</td><td>價格</td><td>存貨</td> "

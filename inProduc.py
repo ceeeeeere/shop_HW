@@ -21,15 +21,10 @@ print("""
 
 #查詢
 form = cgi.FieldStorage()
-name=form.getvalue('name')
-intro=form.getvalue('intro')
-seller=form.getvalue('seller')
-price=form.getvalue('price')
-invenNum=form.getvalue('invenNum')
-osh.addProd(name,intro,seller,invenNum,price)
+id=form.getvalue('inID')
+inNum=form.getvalue('inNum')
+osh.updProdInvenNum(id,inNum)
 
-
-print("商品已上架!")
+print("商品已進貨!")
 print("<br><a href='index_host.py'>回到主頁</a>")
 print("</body></html>")
-
