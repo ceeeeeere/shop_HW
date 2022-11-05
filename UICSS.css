@@ -1,0 +1,32 @@
+fieldset {
+width: 1000px;
+margin: 20px auto;
+padding:20px;
+border: 1px solid #ccc;
+position:relative;
+}
+
+#cont {
+width:900px;
+margin:50px auto;
+}
+table {
+/**/
+border: 2px double Green;
+margin:50px auto;
+width:800px;
+align:center;
+}
+caption {
+margin:20px auto;
+font-size:20pt;
+}
+th, td {
+border: 1px solid darkgreen;
+padding: 2px 4px;
+text-align:center;
+width:50px;
+}
+th {text-align:center; 
+background-color: black;
+color: white} 
