@@ -30,13 +30,13 @@ def updProd(id,name,intro,seller,price,invenNum):
     sql="UPDATE onlineshop SET name=%s, intro=%s, seller=%s, invenNum=%s, price=%s WHERE id=%s"
     cur.execute(sql, (name,intro,seller,price,invenNum,id))
     conn.commit()
-    return False
+    return True
     
 def updProdInvenNum(id,inNum):
     sql="UPDATE onlineshop SET invenNum=invenNum+%s WHERE id=%s"
     cur.execute(sql, (inNum,id))
     conn.commit()
-    return False
+    return True
 
 
 def getCartList():
@@ -45,13 +45,26 @@ def getCartList():
     cur.execute(sql)
     records = cur.fetchall()
     return records
-    
+
+def getCart1BuyNum(id):
+    #查詢
+    sql="SELECT buyNum FROM cart WHERE prodID=%s"
+    cur.execute(sql, (id,))
+    records = cur.fetchall()
+    return records
+
 
 def add2Cart(id,buyNum):
-    sql="INSERT INTO cart (id, buyNum) VALUES (%s,%s)"
+    sql="INSERT INTO cart (prodID, buyNum) VALUES (%s,%s)"
     cur.execute(sql, (id, buyNum))
     conn.commit()
-    return False
+    return True
+
+def add2BuyNum_Cart(id,buyNum):
+    sql="UPDATE cart SET buyNum=buyNum+%s WHERE prodID=%s"
+    cur.execute(sql, (buyNum, id))
+    conn.commit()
+    return True
 
 '''
 def delProdBtyBtn(btn):

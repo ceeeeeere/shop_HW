@@ -9,8 +9,8 @@ sys.stdout.flush()
 
 
 headline = "<h1>這是商場的客戶端</h1>"
-headline += "<hr><form method='post' action='add2Cart.py'>輸入要購買的商品編號: <input type='text' name='i'><br>"
-headline += "輸入要購買的數量: <input type='text' name='i'>&nbsp<input type='submit'></form> <br>"
+headline += "<hr><form method='post' action='add2Cart.py'>輸入要購買的商品編號: <input type='text' name='buyID'><br>"
+headline += "輸入要購買的數量: <input type='text' name='buyNum'>&nbsp<input type='submit' value='確認'></form> <br>"
 headline += f"<input type='button' onclick = 'getCart()' value='購物車'> <br>"#
 headline += "<hr>"
 
