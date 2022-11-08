@@ -22,9 +22,18 @@ print("""
 #查詢
 form = cgi.FieldStorage()
 id=form.getvalue('inID')
-inNum=form.getvalue('inNum')
-osh.plusProdInvenNum(id,inNum)
+inNum = 0;
+buyinMsg = osh.getCart1BuyNum(id)
+for(i,) in buyinMsg:
+    inNum = i;
+if i != None:
+    osh.plusProdInvenNum(id,inNum)#加回商品
+    osh.del2Cart(id)#全退貨，刪除購買欄
+    print("<h1>商品已全數退回!</h1>")
+else:
+    print("NOPE")
 
-print("<h1>商品已進貨!</h1>")
-print("<br><a href='index_host.py'>回到主頁</a>")
+
+
+print("<br><a href='index_client.py'>回到主頁</a>")
 print("</body></html>")

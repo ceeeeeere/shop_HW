@@ -21,10 +21,10 @@ print("""
 
 #查詢
 form = cgi.FieldStorage()
-id=form.getvalue('inID')
-inNum=form.getvalue('inNum')
-osh.plusProdInvenNum(id,inNum)
+osh.checkout()
 
-print("<h1>商品已進貨!</h1>")
-print("<br><a href='index_host.py'>回到主頁</a>")
+
+print("<h1>商品已結清!</h1>")
+print("<br><a href='index_client.py'>回到主頁</a>")
 print("</body></html>")
+

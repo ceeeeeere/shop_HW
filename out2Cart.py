@@ -20,8 +20,8 @@ print("""
 """)
 #查詢
 form = cgi.FieldStorage()
-id=form.getvalue('buyID')
-buyNum=form.getvalue('buyNum')#id,buyNum = 2,20
+id=form.getvalue('outID')
+outNum=form.getvalue('outNum')#id,outNum = 2,60 
 prodMsg = osh.get1ShopList(id)
 cartMsg = osh.getCart1BuyNum(id)
 cartNum = 0
@@ -29,21 +29,24 @@ for (i,) in cartMsg:#購物車內的數量
     if i != None:
         cartNum = i
 
-buyNum = int(buyNum)
+outNum = int(outNum)
 id = int(id)
-''''''
-for (id,name,intro,seller,price,invenNum) in prodMsg:#如果購買數+購車數<=庫存數 => 給買
-    if buyNum <= invenNum:#購買數<=庫存
-        if cartNum > 0:#修改購買數量
-            osh.add2BuyNum_Cart(id,buyNum)
-        else:
-            osh.add2Cart(id,buyNum)
-        osh.minusProdInvenNum(id,buyNum)
-        print("<h1>已購買商品!</h1>")#數量 : %d %(buyNum)
+'''
+print(type(outNum))
+print(type(cartNum))'''
+for (id,name,intro,seller,price,invenNum) in prodMsg:#如果退貨數<=購車數 => 給退
+    if outNum <= cartNum:#True
+        if outNum == cartNum:#全退貨，刪除購買欄
+            osh.del2Cart(id)
+        else:#只減購買數
+            osh.out2BuyNum_Cart(id,outNum);
+        osh.plusProdInvenNum(id,outNum);#加回商品架
+        print("<h1>商品已退貨!</h1>")
     else:
-        print("<h1>購買超過上限!</h1>")
-    print("<div> 目前購物車 %s 已有 %d</div>" %(name,cartNum+buyNum))
+        print("<h1>退貨超過上限!</h1>")
+    print("<div> 目前購物車的 %s 已有 %d</div>" %(name,cartNum-outNum))
 
+#print(prodMsg)print(cartNum)
 print("<br><a href='index_client.py'>回主選單</a>")
 print("</body></html>")
 

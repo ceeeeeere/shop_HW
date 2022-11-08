@@ -23,9 +23,9 @@ form = cgi.FieldStorage()
 id=form.getvalue('delID')
 
 if osh.delProd(id) and id != None :
-    print(f"{id}號商品已刪除!")
+    print(f"<h1>{id}號商品已刪除!</h1>")
 else:
-    print("查無此商品!")
+    print("<h1>查無此商品!</h1>")
     
 print("<br><a href='index_host.py'>回到主頁</a>")
 print("</body></html>")

@@ -4,37 +4,32 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>template test</title>
+    <title>###title###</title>
 
     <link rel="stylesheet" type="text/css" href="UICSS.css">
-    <style type="text/css">
-</style>
+    <style type="text/css"></style>
     <script type="text/javascript">
     function getCart() {
       detail.showModal();
-}    
+    }    
     function closeCart() {
       detail.close();
-}
+    }
     </script>
 </head>
 <body>
-###title###
-<!--
-<input type='button' onclick = 'getCart()' value='cart'/> <br>
-javascript:alert("BUG")
-<h1>這是商場的管理端</h1>新增商品：<a href='addProducForm.html'> 我要販售 </a>
-<hr><form method="post" action="delProduc.py">輸入要刪除的號碼: <input type='text' name='i'><input type='submit'></form> <br>
-<form method="post" action="likeProduc.py">輸入要按讚的號碼: <input type='text' name='i'><input type='submit'></form><hr>
+###headline###
 
-<table><tr><th>商品編號</th><td>商品名稱</td><td>商品介紹</td><td>賣家</td><td>價格</td><td>存貨</td></tr><tr><th>1</th><td>橄欖油</td><td>很好喝的橄欖油</td><td>奧立佛</td><td>100</td><td>20</td><tr><th>2</th><td>沙拉油</td><td>好喝沙拉油 ，滋味樂無窮</td><td>薩勒</td><td>70</td><td>55</td><tr><th>3</th><td>芝麻油</td><td>閑賢知音，米偶有空</td><td>SENSEI</td><td>696969</td><td>15</td></table>
--->
 ###tag1###
 <hr><!---->
 <br>
-<div id="detailOrig" onclick = 'closeCart()'>
-<dialog id="detail"><h1 align=center>購物車</h1>###dialog###</dialog>
+<dialog id="detail" >
+<div id="detailOrig" >
+<div align=right onclick = 'closeCart()'><input type='button'  value='關閉'></div><!-- -->
+<h1 align=center>購物車</h1>###dialog###
+
 </div>
+</dialog>
 
 </body>
 </html>
