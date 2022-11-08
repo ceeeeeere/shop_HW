@@ -18,15 +18,18 @@ print("""
 <body>
 """)
 
-#查詢
-form = cgi.FieldStorage()
-id=form.getvalue('delID')
+try:
+    form = cgi.FieldStorage()#查詢
+    id=form.getvalue('delID')
+    id = int(id)
 
-if osh.delProd(id) and id != None :
-    print(f"<h1>{id}號商品已刪除!</h1>")
-else:
-    print("<h1>查無此商品!</h1>")
-    
+    if osh.delProd(id) and id != None :
+        print(f"<h1>{id}號商品已刪除!</h1>")
+    else:
+        print("<h1>查無此商品!</h1>")
+except:
+    print("<h1>請正當輸入!</h1>")
+
 print("<br><a href='index_host.py'>回到主頁</a>")
 print("</body></html>")
 

@@ -19,30 +19,42 @@ print("""
 <body>
 """)
 #查詢
-form = cgi.FieldStorage()
-id=form.getvalue('buyID')
-buyNum=form.getvalue('buyNum')#id,buyNum = 2,20
-prodMsg = osh.get1ShopList(id)
-cartMsg = osh.getCart1BuyNum(id)
-cartNum = 0
-for (i,) in cartMsg:#購物車內的數量
-    if i != None:
-        cartNum = i
+try:
+    form = cgi.FieldStorage()
+    id=form.getvalue('buyID')
+    buyNum=form.getvalue('buyNum')#id,buyNum = 2,20
+    buyNum, id= int(buyNum),int(id)
+    prodMsg = osh.get1ShopList(id)#查詢該商品資訊
 
-buyNum = int(buyNum)
-id = int(id)
-''''''
-for (id,name,intro,seller,price,invenNum) in prodMsg:#如果購買數+購車數<=庫存數 => 給買
-    if buyNum <= invenNum:#購買數<=庫存
-        if cartNum > 0:#修改購買數量
-            osh.add2BuyNum_Cart(id,buyNum)
+    if buyNum > 0:#購買數恆正數
+        if prodMsg:#如果找到商品
+            cartMsg = osh.getCart1BuyNum(id)
+            cartNum = 0
+            for (i,) in cartMsg:#購物車內的數量
+                if i != None:
+                    cartNum = i
+            for (id,name,intro,seller,price,invenNum) in prodMsg:
+                if invenNum > 0:#商品還有存貨
+                    if buyNum > invenNum:#超買，取庫存值，修改購買數量
+                        buyNum = invenNum
+                    if cartNum > 0:
+                        osh.add2BuyNum_Cart(id,buyNum)
+                    else:
+                        osh.add2Cart(id,buyNum)#新商品加入購物車
+                    osh.minusProdInvenNum(id,buyNum)#減掉商品存貨
+                    print("<h1>已購買商品!</h1><div> 已購買 %d個%s </div>"%(buyNum,name))
+                    print("<div> 目前購物車的 %s 已有 %d</div>" %(name,cartNum+buyNum))
+                else :#差買，直接報錯
+                    print("<h1>商品已售罄!</h1>")
         else:
-            osh.add2Cart(id,buyNum)
-        osh.minusProdInvenNum(id,buyNum)
-        print("<h1>已購買商品!</h1>")#數量 : %d %(buyNum)
+            print("<h1>找不到商品!</h1>")
+    elif buyNum == 0:
+        print("<h1>請確實購物!</h1>")
     else:
-        print("<h1>購買超過上限!</h1>")
-    print("<div> 目前購物車 %s 已有 %d</div>" %(name,cartNum+buyNum))
+        print("<h1>請正確輸入!</h1>")
+        print("<br>又不是不給你退換商品......")
+except:
+    print("<h1>請正當輸入!</h1>")
 
 print("<br><a href='index_client.py'>回主選單</a>")
 print("</body></html>")

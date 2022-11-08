@@ -19,17 +19,20 @@ print("""
 <body>
 """)
 
-#查詢
-form = cgi.FieldStorage()
-id=form.getvalue('id')
-name=form.getvalue('name')
-intro=form.getvalue('intro')
-seller=form.getvalue('seller')
-price=form.getvalue('price')
-invenNum=form.getvalue('invenNum')
-osh.updProd(id,name,intro,seller,price,invenNum)
+try:
+    form = cgi.FieldStorage()#查詢
+    id=form.getvalue('id')
+    name=form.getvalue('name')
+    intro=form.getvalue('intro')
+    seller=form.getvalue('seller')
+    price=form.getvalue('price')
+    invenNum=form.getvalue('invenNum')
+    id, outID = int(id), int(outID)
+    osh.updProd(id,name,intro,seller,price,invenNum)
+    print("訊息已更新!")
+except:
+    print("<h1>請正當輸入!</h1>")
 
-print("訊息已更新!")
 print("<br><a href='index_host.py'>回到主頁</a>")
 print("</body></html>")
 

@@ -19,12 +19,21 @@ print("""
 <body>
 """)
 
-#查詢
-form = cgi.FieldStorage()
-id=form.getvalue('outID')
-outNum=form.getvalue('outNum')
-osh.minusProdInvenNum(id,outNum)
+try:
+    form = cgi.FieldStorage()#查詢
+    id=form.getvalue('outID')
+    outNum=form.getvalue('outNum')
+    id, outID = int(id), int(outNum)
+    if osh.get1ShopList(id):#查詢該商品資訊
+        if outID > 0:
+            osh.minusProdInvenNum(id,outNum)
+            print("<h1>商品已搬回!</h1>")
+            print("<br>共搬出了%s 個 商品<br>"%(outNum))
+        else:
+            print("<h1>請正確輸入!</h1>")
+            print("<br>又不是不給你用進貨功能......")
+except:
+    print("<h1>請正當輸入!</h1>")
 
-print("<h1>商品已搬回!</h1>")
 print("<br><a href='index_host.py'>回到主頁</a>")
 print("</body></html>")

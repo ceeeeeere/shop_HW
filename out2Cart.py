@@ -18,35 +18,37 @@ print("""
 </head>
 <body>
 """)
-#查詢
-form = cgi.FieldStorage()
-id=form.getvalue('outID')
-outNum=form.getvalue('outNum')#id,outNum = 2,60 
-prodMsg = osh.get1ShopList(id)
-cartMsg = osh.getCart1BuyNum(id)
-cartNum = 0
-for (i,) in cartMsg:#購物車內的數量
-    if i != None:
-        cartNum = i
 
-outNum = int(outNum)
-id = int(id)
-'''
-print(type(outNum))
-print(type(cartNum))'''
-for (id,name,intro,seller,price,invenNum) in prodMsg:#如果退貨數<=購車數 => 給退
-    if outNum <= cartNum:#True
-        if outNum == cartNum:#全退貨，刪除購買欄
-            osh.del2Cart(id)
-        else:#只減購買數
-            osh.out2BuyNum_Cart(id,outNum);
-        osh.plusProdInvenNum(id,outNum);#加回商品架
-        print("<h1>商品已退貨!</h1>")
+try:
+    form = cgi.FieldStorage()#查詢
+    id=form.getvalue('outID')
+    outNum=form.getvalue('outNum')#id,outNum = 2,60 
+    outNum, id = int(outNum), int(id)#轉成整數，方便控制
+    cartMsg = osh.getCart1BuyNum(id)
+
+    if outNum > 0:#避免負數
+        if cartMsg:#有找到該商品
+            prodMsg = osh.get1ShopList(id)
+            for (i,) in cartMsg:#購物車內的數量
+                cartNum = i
+            for (id,name,intro,seller,price,invenNum) in prodMsg:
+                if outNum >= cartNum:#全退貨(超退(取購物車值)視為全退貨)
+                    outNum = cartNum
+                    osh.del2Cart(id)#刪除購買欄
+                else:#部分退貨，只減購買數
+                    osh.out2BuyNum_Cart(id,outNum);
+                osh.plusProdInvenNum(id,outNum);#加回商品架
+                print("<h1>商品已退貨!</h1><div>  已退了 %d個%s </div>"%(outNum,name))
+                print("<div> 目前購物車的 %s 已有 %d 個</div>" %(name,cartNum-outNum))
+        else:
+            print("<h1>購物車沒有此商品!</h1>")
+    elif outNum == 0:
+        print("<h1>請確實退貨</h1>")
     else:
-        print("<h1>退貨超過上限!</h1>")
-    print("<div> 目前購物車的 %s 已有 %d</div>" %(name,cartNum-outNum))
+        print("<h1>請正確輸入!</h1>")
+        print("<br>又不是不讓你用消費買賣......")
+except:
+    print("<h1>請正當輸入!</h1>")
 
-#print(prodMsg)print(cartNum)
 print("<br><a href='index_client.py'>回主選單</a>")
 print("</body></html>")
-
