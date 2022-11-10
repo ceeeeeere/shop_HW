@@ -20,10 +20,10 @@ print("""
 """)
 #查詢
 try:
-    form = cgi.FieldStorage()
+    form = cgi.FieldStorage()#抓取資料
     id=form.getvalue('buyID')
     buyNum=form.getvalue('buyNum')#id,buyNum = 2,20
-    buyNum, id= int(buyNum),int(id)
+    buyNum, id= int(buyNum),int(id)#轉整數，方便判斷
     prodMsg = osh.get1ShopList(id)#查詢該商品資訊
 
     if buyNum > 0:#購買數恆正數
@@ -43,19 +43,19 @@ try:
                         osh.add2Cart(id,buyNum)#新商品加入購物車
                     osh.minusProdInvenNum(id,buyNum)#減掉商品存貨
                     print("<h1>已購買商品!</h1><div> 已購買 %d個%s </div>"%(buyNum,name))
-                    print("<div> 目前購物車的 %s 已有 %d</div>" %(name,cartNum+buyNum))
+                    print("<div> 目前購物車的「%s」已有 %d件</div>" %(name,cartNum+buyNum))
                 else :#差買，直接報錯
                     print("<h1>商品已售罄!</h1>")
         else:
-            print("<h1>找不到商品!</h1>")
+            print("<h1>商場內找不到該商品!</h1>")
     elif buyNum == 0:
         print("<h1>請確實購物!</h1>")
     else:
         print("<h1>請正確輸入!</h1>")
         print("<br>又不是不給你退換商品......")
-except:
+except:#轉整數失敗等同「id和購買數」並非整數
     print("<h1>請正當輸入!</h1>")
-
+#固定的回到主頁
 print("<br><a href='index_client.py'>回主選單</a>")
 print("</body></html>")
 

@@ -25,18 +25,18 @@ try:
     inNum=form.getvalue('inNum')
     id, inNum = int(id), int(inNum)
     if osh.get1ShopList(id):#查詢該商品資訊
-        if inNum > 0:
+        if inNum > 0:#進貨數恆整數
             osh.plusProdInvenNum(id,inNum)
             print("<h1>商品已進貨!</h1>")
             print("<br>共進貨了%s 個 商品<br>"%(inNum))
-        else:
+        else:#不正當上架時
             print("<h1>請正確輸入!</h1>")
             print("<br>又不是不給你用減貨功能......")
-    else:
+    else:#找不到商品，詢問是否上架新商品
         print("<h1>找不到商品，是否創建?</h1>")
         print("<br><a href='addProducForm.html'>創建新商品</a>&nbsp&nbsp")
 except:
     print("<h1>請正當輸入!</h1><br>")
-
+#固定的回到主頁
 print("<br><a href='index_host.py'>回到主頁</a>")
 print("</body></html>")

@@ -39,7 +39,7 @@ try:
                     osh.out2BuyNum_Cart(id,outNum);
                 osh.plusProdInvenNum(id,outNum);#加回商品架
                 print("<h1>商品已退貨!</h1><div>  已退了 %d個%s </div>"%(outNum,name))
-                print("<div> 目前購物車的 %s 已有 %d 個</div>" %(name,cartNum-outNum))
+                print("<div> 目前購物車的「%s」還剩 %d件</div>" %(name,cartNum-outNum))
         else:
             print("<h1>購物車沒有此商品!</h1>")
     elif outNum == 0:
@@ -47,8 +47,8 @@ try:
     else:
         print("<h1>請正確輸入!</h1>")
         print("<br>又不是不讓你用消費買賣......")
-except:
+except:#轉整數失敗等同「id和退貨數」並非整數
     print("<h1>請正當輸入!</h1>")
-
+#固定的回到主頁
 print("<br><a href='index_client.py'>回主選單</a>")
 print("</body></html>")

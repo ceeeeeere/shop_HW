@@ -20,17 +20,23 @@ print("""
 """)
 
 try:
-    form = cgi.FieldStorage()#查詢
+    form = cgi.FieldStorage()#接取資料
     name=form.getvalue('name')
     intro=form.getvalue('intro')
     seller=form.getvalue('seller')
     price=form.getvalue('price')
     invenNum=form.getvalue('invenNum')
-    price, invenNum = int(price),int(invenNum)
-    osh.addProd(name,intro,seller,invenNum,price)
-    print("商品已上架!")
-except:
+    price, invenNum = int(price),int(invenNum)#轉整數，方便判斷
+    if price < 0 and invenNum < 0:#價格不小於0才可更改資料，不然要求重新填寫
+        print("<h1>價格和存貨數必須不小於於0!</h1>")
+        print("<br><a href='addProducForm.html'>重新填寫</a>")
+    else :#加入新商品
+        osh.addProd(name,intro,seller,invenNum,price)
+        print("<h1>商品已上架!</h1>")
+        
+except:#轉整數失敗等同 價格及存貨數 非整數
     print("<h1>請正當輸入!</h1>")
-
+    print("<br><a href='addProducForm.html'>重新填寫</a>")
+#固定的回到主頁
 print("<br><a href='index_host.py'>回到主頁</a>")
 print("</body></html>")

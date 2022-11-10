@@ -2,7 +2,7 @@
 import mysql.connector 
 
 try:
- 	#conn = mariadb.connect(
+	#conn = mariadb.connect(
 	conn = mysql.connector.connect(
 		user="root",
 		password="",

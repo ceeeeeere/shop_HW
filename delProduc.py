@@ -21,15 +21,15 @@ print("""
 try:
     form = cgi.FieldStorage()#查詢
     id=form.getvalue('delID')
-    id = int(id)
+    id = int(id)#轉整數，方便判斷
 
-    if osh.delProd(id) and id != None :
+    if osh.delProd(id) and id != None :#找到商品，刪掉
         print(f"<h1>{id}號商品已刪除!</h1>")
-    else:
+    else:#查無此商品
         print("<h1>查無此商品!</h1>")
-except:
+except:#轉整數失敗等同「id」並非整數
     print("<h1>請正當輸入!</h1>")
-
+#固定的回到主頁
 print("<br><a href='index_host.py'>回到主頁</a>")
 print("</body></html>")
 

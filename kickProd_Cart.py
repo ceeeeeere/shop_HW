@@ -21,18 +21,18 @@ print("""
 try:
     form = cgi.FieldStorage()#查詢
     id=form.getvalue('inID')
-    inNum = 0;
-    buyinMsg = osh.getCart1BuyNum(id)
-    for(i,) in buyinMsg:
+    inNum = 0;#購買數量初始化
+    buyinMsg = osh.getCart1BuyNum(id)#查詢該商品在購物車的數量
+    for(i,) in buyinMsg:#並用於此
         inNum = i;
     if i != None:
         osh.plusProdInvenNum(id,inNum)#加回商品
         osh.del2Cart(id)#全退貨，刪除購買欄
         print("<h1>商品已全數退回!</h1>")
-    else:
-        print("NOPE")
-except:
-    print("<h1>請正當輸入!</h1>")
-
+    else:#購物車內找不到商品
+        print("<h1>購物車內無此商品!</h1>")
+except:#購物車內找不到商品
+    print("<h1>購物車內找不到此商品!</h1>")
+#固定的回到主頁
 print("<br><a href='index_client.py'>回到主頁</a>")
 print("</body></html>")

@@ -20,20 +20,28 @@ print("""
 """)
 
 try:
-    form = cgi.FieldStorage()#查詢
+    form = cgi.FieldStorage()#抓取資料
     id=form.getvalue('outID')
     outNum=form.getvalue('outNum')
-    id, outID = int(id), int(outNum)
-    if osh.get1ShopList(id):#查詢該商品資訊
-        if outID > 0:
-            osh.minusProdInvenNum(id,outNum)
+    id, outNum = int(id), int(outNum)#轉整數，方便判斷
+    oriInvNum = 0#初始化
+    msg = osh.get1ShopList(id)#詢問
+    for (id,name,intro,seller,price,invenNum) in msg:#查詢該商品資訊
+        oriInvNum = invenNum
+    if oriInvNum > 0:#仍有庫存
+        if outNum > 0:#下架數恆正數
+            if outNum > oriInvNum:#超下架，取庫存數
+                outNum = oriInvNum
+            osh.minusProdInvenNum(id,outNum)#減掉商品存貨
             print("<h1>商品已搬回!</h1>")
             print("<br>共搬出了%s 個 商品<br>"%(outNum))
-        else:
+        else:#不正當下架時
             print("<h1>請正確輸入!</h1>")
             print("<br>又不是不給你用進貨功能......")
+    else:#沒有庫存
+        print("<h1>架上無貨可退!</h1>")
 except:
     print("<h1>請正當輸入!</h1>")
-
+#固定的回到主頁
 print("<br><a href='index_host.py'>回到主頁</a>")
 print("</body></html>")
