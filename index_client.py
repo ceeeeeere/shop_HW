@@ -11,9 +11,9 @@ title="Client.buy"#title
 #標頭和功能模組
 headline = "<h1>這是商場的客戶端</h1><hr>"
 headline += "<form method='post' action='add2Cart.py'>購買 : <input type='text' name='buyID' placeholder='在此輸入商品編號'>&nbsp&nbsp"
-headline += "數量: <input type='text' name='buyNum' placeholder='在此輸入購買數量'>&nbsp<input type='submit' value='確認'></form> <br>"
+headline += "數量 : <input type='number' name='buyNum' placeholder='在此輸入購買數量'>&nbsp<input type='submit' value='確認'></form> <br>"
 headline += "<form method='post' action='out2Cart.py'>退貨 : <input type='text' name='outID' placeholder='在此輸入商品編號'>&nbsp&nbsp"
-headline += "數量 : <input type='text' name='outNum' placeholder='在此輸入退貨數量'>&nbsp<input type='submit' value='確認'></form> <br>"
+headline += "數量 : <input type='number' name='outNum' placeholder='在此輸入退貨數量'>&nbsp<input type='submit' value='確認'></form> <br>"
 headline += f"<input type='button' onclick = 'getCart()' value='購物車'> <br>"#
 headline += "<hr>"
 

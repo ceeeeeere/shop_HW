@@ -13,12 +13,12 @@ def get1ShopList(id):#查詢該商品資訊
     return records
 
 def addProd(name,intro,seller,invenNum,price):#加入新商品  (`name`,`intro`,`seller`,`invenNum`,`price`)
-    sql="INSERT INTO `onlineshop` VALUES (按'',%s,%s,%s,%s,%s)"
+    sql="INSERT INTO `onlineshop` VALUES ('',%s,%s,%s,%s,%s)"
     cur.execute(sql, (name,intro,seller,invenNum,price))
     conn.commit()
     return True
 
-def updProd(id,name,intro,seller,price,invenNum):#更改商品詳細資訊
+def updProd(id,name,intro,seller,invenNum,price):#更改商品詳細資訊
     sql="UPDATE onlineshop SET name=%s, intro=%s, seller=%s, price=%s, invenNum=%s WHERE id=%s"
     cur.execute(sql, (name,intro,seller,price,invenNum,id))
     conn.commit()

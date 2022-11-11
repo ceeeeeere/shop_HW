@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-11-08 21:07:40
+-- 產生時間： 2022-11-11 20:31:41
 -- 伺服器版本： 10.4.19-MariaDB
 -- PHP 版本： 8.0.6
 
@@ -42,9 +42,9 @@ CREATE TABLE `onlineshop` (
 
 INSERT INTO `onlineshop` (`id`, `name`, `intro`, `seller`, `invenNum`, `price`) VALUES
 (1, '橄欖油', '很好喝的橄欖油', '奧立佛', 100, 100),
-(2, '沙拉油', '好喝沙拉油，滋味樂無窮', '薩勒', 200, 70),
+(2, '沙拉油', '好喝沙拉油，滋味樂無窮', '薩勒', 230, 70),
 (3, '芝麻油', '閑賢知音，米偶有空', 'SENSEI', 870000, 50),
-(13, '該刪除的商品', '這是一個一個一個商品啊啊啊啊啊', '先輩', 86415411, 400);
+(13, '有味道的商品', '這是一個一個一個商品啊啊啊啊啊', '先輩', 86415411, 400);
 
 --
 -- 已傾印資料表的索引
@@ -64,7 +64,7 @@ ALTER TABLE `onlineshop`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `onlineshop`
 --
 ALTER TABLE `onlineshop`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

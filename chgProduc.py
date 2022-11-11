@@ -27,19 +27,18 @@ try:
     seller=form.getvalue('seller')
     price=form.getvalue('price')
     invenNum=form.getvalue('invenNum')
-    price, invenNum = int(price), int(invenNum)#轉整數，方便判斷
-    if price < 0 and invenNum < 0:#價格不小於0才可更改資料，不然要求重新填寫
-        print("<h1>價格及存貨數必須不小於0!</h1>")
+    price, invenNum = int(price), int(invenNum)
+    if price < 0 or invenNum < 0:#價格或庫存不小於0才可更改資料，不然要求重新填寫
+        print("<h1>價格或存貨數必須不小於0!</h1>")
         print("<br><form method='post' action='chgProdForm.py'>")
         print(f"<input type='hidden' name='updID' value='{id}'>")
         print("<input type='submit' value='重新填寫'/></form></a>")
     else :#更改商品詳細資訊
-        osh.updProd(id,name,intro,seller,price,invenNum)
+        osh.updProd(id,name,intro,seller,invenNum,price)
         print("<h1>訊息已更新!</h1>")
         ''''''
 except:#轉整數失敗等同「價格及存貨數」非整數
     print("<h1>請正當輸入!</h1>")
-    print("<br><a href='chgProdForm.py'>重新填寫</a>")
 #固定的回到主頁
 print("<br><a href='index_host.py'>回到主頁</a>")
 print("</body></html>")

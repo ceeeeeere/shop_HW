@@ -26,7 +26,7 @@ try:
     id, outNum = int(id), int(outNum)#轉整數，方便判斷
     oriInvNum = 0#初始化
     msg = osh.get1ShopList(id)#詢問
-    for (id,name,intro,seller,price,invenNum) in msg:#查詢該商品資訊
+    for (id,name,intro,seller,invenNum,price) in msg:#查詢該商品資訊
         oriInvNum = invenNum
     if oriInvNum > 0:#仍有庫存
         if outNum > 0:#下架數恆正數
@@ -34,7 +34,7 @@ try:
                 outNum = oriInvNum
             osh.minusProdInvenNum(id,outNum)#減掉商品存貨
             print("<h1>商品已搬回!</h1>")
-            print("<br>共搬出了%s 個 商品<br>"%(outNum))
+            print("<br>共搬出了%s 件商品<br>"%(outNum))
         else:#不正當下架時
             print("<h1>請正確輸入!</h1>")
             print("<br>又不是不給你用進貨功能......")

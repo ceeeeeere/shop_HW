@@ -33,7 +33,7 @@ try:
             for (i,) in cartMsg:#購物車內的數量
                 if i != None:
                     cartNum = i
-            for (id,name,intro,seller,price,invenNum) in prodMsg:
+            for (id,name,intro,seller,invenNum,price) in prodMsg:
                 if invenNum > 0:#商品還有存貨
                     if buyNum > invenNum:#超買，取庫存值，修改購買數量
                         buyNum = invenNum

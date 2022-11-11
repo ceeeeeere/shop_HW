@@ -31,7 +31,7 @@ try:
             prodMsg = osh.get1ShopList(id)
             for (i,) in cartMsg:#購物車內的數量
                 cartNum = i
-            for (id,name,intro,seller,price,invenNum) in prodMsg:
+            for (id,name,intro,seller,invenNum,price) in prodMsg:
                 if outNum >= cartNum:#全退貨(超退(取購物車值)視為全退貨)
                     outNum = cartNum
                     osh.del2Cart(id)#刪除購買欄

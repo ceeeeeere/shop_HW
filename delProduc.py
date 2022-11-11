@@ -22,8 +22,8 @@ try:
     form = cgi.FieldStorage()#查詢
     id=form.getvalue('delID')
     id = int(id)#轉整數，方便判斷
-
-    if osh.delProd(id) and id != None :#找到商品，刪掉
+    if osh.get1ShopList(id) and id != None :#找到商品，刪掉
+        osh.delProd(id)
         print(f"<h1>{id}號商品已刪除!</h1>")
     else:#查無此商品
         print("<h1>查無此商品!</h1>")

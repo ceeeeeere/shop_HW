@@ -27,13 +27,13 @@ try:
     target=""#初始化
     
     #建置更改資料環境，並預配置初始資料
-    for (id,name,intro,seller,price,invenNum) in msgList:
+    for (id,name,intro,seller,invenNum,price) in msgList:
         target += f"<form method='post' action='chgProduc.py'>"
         target += f"賣家 : <input type='text' readonly unselectable='off' name='seller' value={seller} /><br>"
         target += f"商品編號 : <input type='text readonly unselectable='on' name='id' value={id} /><br>"
         target += f"商品名稱 : <input type='text' name='name' value={name} /><br>"
-        target += f"商品價格 : <input type='text' name='price' value={price} /><br>"
-        target += f"商品存貨 : <input type='text' name='invenNum' value={invenNum} /><br>"
+        target += f"商品價格 : <input type='number' name='price' value={price} /><br>"
+        target += f"商品存貨 : <input type='number' name='invenNum' value={invenNum} /><br>"
         target += f"商品介紹 : <textarea  name='intro' >{intro}</textarea><br>"
         target += f"<input type='submit' value='修改'/><br></form>"
     #print(id)  #print(msgList) #測試用的

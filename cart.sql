@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-11-08 21:07:32
+-- 產生時間： 2022-11-11 20:31:49
 -- 伺服器版本： 10.4.19-MariaDB
 -- PHP 版本： 8.0.6
 
@@ -31,15 +31,6 @@ CREATE TABLE `cart` (
   `prodID` int(11) NOT NULL,
   `buyNum` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- 傾印資料表的資料 `cart`
---
-
-INSERT INTO `cart` (`prodID`, `buyNum`) VALUES
-(1, 20),
-(2, 50),
-(3, 870);
 
 --
 -- 已傾印資料表的索引

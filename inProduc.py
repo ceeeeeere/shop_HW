@@ -28,7 +28,7 @@ try:
         if inNum > 0:#進貨數恆整數
             osh.plusProdInvenNum(id,inNum)
             print("<h1>商品已進貨!</h1>")
-            print("<br>共進貨了%s 個 商品<br>"%(inNum))
+            print("<br>共進貨了%s 件商品<br>"%(inNum))
         else:#不正當上架時
             print("<h1>請正確輸入!</h1>")
             print("<br>又不是不給你用減貨功能......")

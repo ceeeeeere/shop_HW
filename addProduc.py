@@ -33,7 +33,7 @@ try:
     else :#加入新商品
         osh.addProd(name,intro,seller,invenNum,price)
         print("<h1>商品已上架!</h1>")
-        
+
 except:#轉整數失敗等同 價格及存貨數 非整數
     print("<h1>請正當輸入!</h1>")
     print("<br><a href='addProducForm.html'>重新填寫</a>")

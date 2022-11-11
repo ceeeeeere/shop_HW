@@ -21,10 +21,12 @@ print("""
 
 #查詢
 form = cgi.FieldStorage()
-osh.checkout()
+if osh.getCartList():
+    osh.checkout()
+    print("<h1>商品已結清!</h1>")
+else:
+    print("<h1>購物車是空的!</h1>")
 
-
-print("<h1>商品已結清!</h1>")
 print("<br><a href='index_client.py'>回到主頁</a>")
 print("</body></html>")
 
