@@ -10,10 +10,10 @@ sys.stdout.flush()
 title="Client.buy"#title
 #標頭和功能模組
 headline = "<h1>這是商場的客戶端</h1><hr>"
-headline += "<form method='post' action='add2Cart.py'>購買 : <input type='text' name='buyID' placeholder='在此輸入商品編號'>&nbsp&nbsp"
-headline += "數量 : <input type='number' name='buyNum' placeholder='在此輸入購買數量'>&nbsp<input type='submit' value='確認'></form> <br>"
-headline += "<form method='post' action='out2Cart.py'>退貨 : <input type='text' name='outID' placeholder='在此輸入商品編號'>&nbsp&nbsp"
-headline += "數量 : <input type='number' name='outNum' placeholder='在此輸入退貨數量'>&nbsp<input type='submit' value='確認'></form> <br>"
+headline += "<form method='post' action='add2Cart.py'>購買 : <input type='text' name='buyID' required='required' placeholder='在此輸入商品編號'>&nbsp&nbsp"
+headline += "數量 : <input type='number' name='buyNum' required='required' placeholder='在此輸入購買數量'>&nbsp<input type='submit' value='確認'></form> <br>"
+headline += "<form method='post' action='out2Cart.py'>退貨 : <input type='text' name='outID' required='required' placeholder='在此輸入商品編號'>&nbsp&nbsp"
+headline += "數量 : <input type='number' name='outNum' required='required' placeholder='在此輸入退貨數量'>&nbsp<input type='submit' value='確認'></form> <br>"
 headline += f"<input type='button' onclick = 'getCart()' value='購物車'> <br>"#
 headline += "<hr>"
 
@@ -28,7 +28,7 @@ shopTbl+="</table>"
 #建構購物車的 list
 cartList=osh.getCartList()
 ttlPrice = 0#總價
-cartTbl="<form method='post' action='kickProd_Cart.py'>全部退貨<input type='text' name='inID' placeholder='在此輸入商品編號'>&nbsp<input type='submit' value='全部退貨'></form>"
+cartTbl="<form method='post' action='kickProd_Cart.py'>全部退貨<input type='text' name='inID' required='required' placeholder='在此輸入商品編號'>&nbsp<input type='submit' value='全部退貨'></form>"
 cartTbl+="<table><tr><th>商品編號</th><td>商品名稱</td><td>商品介紹</td><td>賣家</td><td>價格</td><td>購買數量</td></tr>"#<td  width='90px'>購買數量</td>
 for (id, name, intro, seller, price, buyNum) in cartList:
     cartTbl += f"<tr><th>{id}</th><td>{name}</td><td>{intro}</td><td>{seller}</td><td>{price}</td><td>{buyNum}</td></tr>"
