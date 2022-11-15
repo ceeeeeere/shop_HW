@@ -87,8 +87,3 @@ def del2Cart(id):#商品全拿出購物車(刪除購買欄)
     conn.commit()
     return True
 
-
-
-
-
-

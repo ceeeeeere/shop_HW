@@ -28,14 +28,19 @@ shopTbl+="</table>"
 #建構購物車的 list
 cartList=osh.getCartList()
 ttlPrice = 0#總價
+disPrice = 0#折價後的價格價
 cartTbl="<form method='post' action='kickProd_Cart.py'>全部退貨<input type='text' name='inID' required='required' placeholder='在此輸入商品編號'>&nbsp<input type='submit' value='全部退貨'></form>"
 cartTbl+="<table><tr><th>商品編號</th><td>商品名稱</td><td>商品介紹</td><td>賣家</td><td>價格</td><td>購買數量</td></tr>"#<td  width='90px'>購買數量</td>
 for (id, name, intro, seller, price, buyNum) in cartList:
     cartTbl += f"<tr><th>{id}</th><td>{name}</td><td>{intro}</td><td>{seller}</td><td>{price}</td><td>{buyNum}</td></tr>"
     ttlPrice += price*buyNum
     #cartTbl += f"<td><div><form method='post' action=''> <input type='text' name='i'  size='1'>&nbsp<input type='submit'></form></form></td>"
-cartTbl+=f"<tr ><td colspan=99><p align=right>共計：{ttlPrice}</p></td></tr></table>"#總價
-cartTbl+="<div align=right><form method='post' action='chkOutCart.py'><input type='submit' value='結帳'></form></div>"
+if ttlPrice > 1000:
+    discount = ttlPrice //1000*100
+    disPrice = ttlPrice - discount
+cartTbl+=f"<tr ><td colspan=99><p align=right>共計(滿1000折100)：{disPrice}</p>"#總價 => 滿1000折100
+#cartTbl+=f"<p align=right>折扣後(滿1000折100)：{disPrice}</p>"#總價 => 滿1000折100
+cartTbl+="</td></tr></table><div align=right><form method='post' action='chkOutCart.py'><input type='submit' value='結帳'></form></div>"
 ''''''
 
 

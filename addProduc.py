@@ -27,7 +27,7 @@ try:
     price=form.getvalue('price')
     invenNum=form.getvalue('invenNum')
     price, invenNum = int(price),int(invenNum)#轉整數，方便判斷
-    if price < 0 and invenNum < 0:#價格不小於0才可更改資料，不然要求重新填寫
+    if price < 0 or invenNum < 0:#價格不小於0才可更改資料，不然要求重新填寫
         print("<h1>價格和存貨數必須不小於於0!</h1>")
         print("<br><a href='addProducForm.html'>重新填寫</a>")
     else :#加入新商品
