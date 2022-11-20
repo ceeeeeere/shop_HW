@@ -21,7 +21,8 @@ headline += "<hr>"
 shopList=osh.getShopList()#show shop list
 shopTbl="<table><tr><th>商品編號</th><td>商品名稱</td><td>商品介紹</td><td>賣家</td><td>價格</td><td>存貨</td></tr>"#<td  width='90px'>購買數量</td>
 for (id,name,intro,seller,invenNum,price) in shopList:
-    shopTbl += f"<tr><th>{id}</th><td>{name}</td><td>{intro}</td><td>{seller}</td><td>{price}</td><td>{invenNum}</td>"
+    if invenNum > 0:
+        shopTbl += f"<tr><th>{id}</th><td>{name}</td><td>{intro}</td><td>{seller}</td><td>{price}</td><td>{invenNum}</td>"
     #shopTbl += f"<td><div><form method='post' action=''> <input type='text' name='i'  size='1'>&nbsp<input type='submit'></form></form></td>"
 shopTbl+="</table>"
 
